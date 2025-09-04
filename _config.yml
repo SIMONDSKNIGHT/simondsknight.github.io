@@ -1,3 +1,12 @@
-﻿domain: simondsknight.github.io
+﻿title: Simon Knight - Software Developer Portfolio Website
+description: The personal portfolio website of Simon Knight.
+theme: minima
+plugins:
+  - jekull-seo-tag
+  - jekyll-sitemap
+  - jekyll-feed
+
+
+domain: simondsknight.github.io
 url: https://simondsknight.github.io
 baseurl: /simondsknight.github.io/
