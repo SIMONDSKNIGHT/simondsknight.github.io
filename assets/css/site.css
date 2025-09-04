@@ -1,0 +1,92 @@
+/* ---- Design goals ----
+   - Utilitarian: readable, uncluttered, fast.
+   - 1 file to keep maintenance simple.
+   - Uses system fonts (no extra network requests, looks native on each OS).
+   - Adapts to user’s dark-mode preference automatically.
+*/
+
+:root {
+  --w: 860px;   /* max line width for comfortable reading */
+  --gap: 1rem;  /* base spacing unit */
+}
+
+/* Include borders/padding in width calculations to avoid layout surprises. */
+* { box-sizing: border-box; }
+
+html, body { height: 100%; }
+
+/* Body defaults: system font stack keeps the site snappy and legible. */
+body {
+  margin: 0;
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  line-height: 1.6;
+  color: #111;
+  background: #fff;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+}
+
+/* Keep links quiet by default; underline on hover for clear affordance. */
+a { color: inherit; text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* .wrap centers content and applies a comfortable max width + padding. */
+.wrap { max-width: var(--w); margin: 0 auto; padding: 1rem; }
+
+/* Header: simple horizontal layout with a light divider line. */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  border-bottom: 1px solid #eee;
+}
+
+/* Brand area (site title + role) */
+.brand a { font-weight: 700; }
+.brand small { display: block; color: #666; }
+
+/* Plain inline nav; add/remove links freely. */
+nav a { margin-left: 1rem; }
+
+/* Footer mirrors the header line so pages look "finished." */
+footer { border-top: 1px solid #eee;
+    color: #666; 
+    margin-top: 2rem;
+    min-height:50px;
+    text-align: center;
+}
+
+/* Headings get a tighter line-height for nicer rhythm. */
+h1, h2, h3 { line-height: 1.25; }
+
+/* Muted helper for secondary text (summaries, stacks). */
+.muted { color: #666; }
+
+/* Year "pill" floated right makes scanning easier without dominating. */
+.pill {
+  float: right;
+  background: #f2f2f2;
+  border-radius: 999px;
+  padding: 0.1rem 0.6rem;
+  font-size: 0.85rem;
+  color: #555;
+}
+
+/* Project list = no bullets + subtle dividers. */
+.list { list-style: none; padding: 0; margin: 1rem 0; }
+.list li { padding: .75rem 0; border-bottom: 1px solid #eee; }
+
+/* On project pages, stack the small metadata lines tightly. */
+.project header p { margin: 0.25rem 0; }
+
+/* Accessibility: make the "skip to content" link visible when focused by keyboard. */
+.skip { position: absolute; left: -9999px; }
+.skip:focus { left: 1rem; top: 1rem; background: #000; color: #fff; padding: .5rem; }
+
+/* Respect user’s dark-mode preference automatically (no JS toggle needed). */
+@media (prefers-color-scheme: dark) {
+  body { background: #0b0b0b; color: #e7e7e7; }
+  header, footer { border-color: #222; }
+  .muted { color: #aaa; }
+  .pill { background: #1b1b1b; color: #bbb; }
+}

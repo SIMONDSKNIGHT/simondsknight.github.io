@@ -317,9 +317,11 @@ PLATFORMS
 
 DEPENDENCIES
   github-pages (~> 232)
+  jekyll-watch
   nokogiri
   rack (~> 2.2.4)
   rspec
+  webrick (~> 1.9)
 
 BUNDLED WITH
    2.7.1

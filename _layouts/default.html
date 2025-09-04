@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{page.title}} · {{site.title}}</title>
+    <link rel="stylesheet" href="{{ '/assets/css/site.css' | relative_url }}">
+    <meta name="description" content="{{page.excerpt | default: site.description | strip_html | strip}}">
+    {% seo %}
+  </head>
+  <body>
+    <!--skip past repeated nav-->
+    <a class="skip" href="#main-content">Skip to main content</a>
+    <header class="wrapper">
+      <div class="brand">
+        <a href="{{ '/' | relative_url }}">{{ site.title }}</a>
+        <small>{{ site.description }}</small>
+      </div>
+      <nav aria-label="primary"><!-- aria label is a option for visually impaired individuals-->
+        <a href="{{ '/' | relative_url }}">Work</a>
+        <a href="{{ 'pages/about/' | relative_url }}">About</a>
+
+      </nav>
+     
+          
+      
+    </header>
+    <main id="main-content" class="wrapper">
+      {{ content }}
+    </main>
+    <footer class="wrapper">
+      <p>© {{ site.time | date: '%Y' }} {{site.title}} . All rights reserved.</p>
+      <p>Built with <a href="https://jekyllrb.com/">Jekyll</a>.</p>
+    </footer>
+  </body>
+</html>
