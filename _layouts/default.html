@@ -3,33 +3,38 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{page.title}} · {{site.title}}</title>
-    <link rel="stylesheet" href="{{ '/assets/css/site.css' | relative_url }}">
-    <meta name="description" content="{{page.excerpt | default: site.description | strip_html | strip}}">
+    <title>{{ page.title }} · {{ site.title }}</title>
+
+    <!-- The ONE place we link CSS so all pages get it -->
+    <link rel="stylesheet" href="{{ '/assets/css/site.css' | relative_url }}?v={{ site.time | date: '%s' }}">
+
+    <meta name="description" content="{{ page.excerpt | default: site.description | strip_html | strip }}">
     {% seo %}
   </head>
   <body>
-    <!--skip past repeated nav-->
     <a class="skip" href="#main-content">Skip to content</a>
-    <header class="wrapper">
-      <div class="brand">
+
+    <header id="site-header" class="header">
+      <!-- <div class="brand">
         <a href="{{ '/' | relative_url }}">{{ site.title }}</a>
         <small>{{ site.description }}</small>
-      </div>
-      <nav aria-label="primary"><!-- aria label is a option for visually impaired individuals-->
-        <a href="{{ '/' | relative_url }}">Home</a>
-        <a href="{{ 'pages/about/' | relative_url }}">About</a>
-        <a href="{{ 'pages/projects/' | relative_url }}">Projects</a>
-        <a href="{{ 'pages/blog/' | relative_url }}">Blog</a>
+      </div> -->
 
+      <nav class="headnav" aria-label="primary">
+        <a href="{{ '/' | relative_url }}">Home</a>
+        <a href="{{ '/pages/about/' | relative_url }}">About</a>
+        <a href="{{ '/pages/projects/' | relative_url }}">Projects</a>
+        <a href="{{ '/pages/blog/' | relative_url }}">Blog</a>
       </nav>
     </header>
+
     <main id="main-content" class="wrapper">
       {{ content }}
     </main>
-    <footer id="site-footer" class="footer wrapper">
+
+    <footer id="site-footer" class="footer">
       <nav class="footnav" aria-label="Social">
-        <a href="https://www.linkedin.com/in/simon-knight-a37643230" target="_blank" rel="noopener">LinkedIn</a> 
+        <a href="https://www.linkedin.com/in/simon-knight-a37643230" target="_blank" rel="noopener">LinkedIn</a>
         <a href="https://www.github.com/simondsknight" target="_blank" rel="noopener">GitHub</a>
         <a href="mailto:knigsd@icloud.com">Email</a>
       </nav>
@@ -39,13 +44,16 @@
         <small>Built with <a href="https://jekyllrb.com/">Jekyll</a>.</small>
       </div>
     </footer>
-    <div id= "modal" class="modal" hidden>
+
+    <!-- Projects modal host (safe to keep here so every page has it) -->
+    <div id="modal" class="modal" hidden>
       <div class="modal__panel" role="dialog" aria-modal="true" aria-labelledby="modal-title">
         <button class="modal__close" aria-label="Close">×</button>
-        <div id="modal-content"><!-- injected by JS --></div>
+        <div id="modal-content"></div>
       </div>
       <div class="modal__scrim"></div>
     </div>
+
     <script type="module" src="{{ '/assets/js/site.js' | relative_url }}"></script>
   </body>
 </html>
