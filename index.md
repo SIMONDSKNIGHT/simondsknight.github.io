@@ -1,21 +1,15 @@
 ---
-title: Work
+permalink: /
+layout: null
 ---
 
-<ul class="list">
-{% assign ps = site.projects | sort: "year" | reverse %}
-{% for p in ps %}
-  <li>
-    <!--Title-->
-    <a href="{{ p.url | relative_url }}"><strong>{{ p.title }}</strong></a>
-
-    {% if p.summary %}<br><span class="muted">{{ p.summary }}</span>{% endif %}
-
-    <!-- Tech stack -->
-    {% if p.stack %}<br><span class="muted">{{ p.stack | join: ', ' }}</span>{% endif %}
-
-
-    {% if p.year %}<span class="pill">{{ p.year }}</span>{% endif %}
-  </li>
-{% endfor %}
-</ul>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="refresh" content="0; url={{ '/home/' | relative_url }}">
+    <link rel="canonical" href="{{ '/home/' | absolute_url }}">
+  </head>
+  <body>
+    <p>If you are not redirected automatically, <a href="{{ '/home/' | relative_url }}">go to the homepage</a>.</p>
+  </body>
+</html>

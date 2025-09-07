@@ -162,3 +162,22 @@ h1, h2, h3 { line-height: 1.25; }
   .muted { color: #aaa; }
   .pill { background: #1b1b1b; color: #bbb; }
 }
+
+.emoji {
+  height: 1em;
+  width: 1em;
+  font-size: 3rem;
+  margin: 0 .05em 0 .1em;
+  vertical-align: -0.1em;
+  /* For safety - prevent weird effects in some browsers */
+  display: inline-block;
+  /* Fixes issue where emojis were slightly off center vertically in Firefox */
+  position: relative;
+  top: -0.05em;
+}
+.intro-line{
+  font-size: 2rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  text-align: left;
+}
