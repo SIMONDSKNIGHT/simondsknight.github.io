@@ -182,3 +182,25 @@ h1, h2, h3 { line-height: 1.25; }
   margin-bottom: 1rem;
   text-align: left;
 }
+
+
+
+/* About page headshot: right-aligned, responsive, readable text wrap */
+.headshot {
+  float: right;
+  width: min(260px, 35vw);
+  height: auto;
+  border-radius: 50%;
+  margin: 0 0 1rem 1rem;   /* space to the left/bottom of the image */
+  object-fit: cover;
+}
+
+/* Avoid float on narrow screens */
+@media (max-width: 640px) {
+  .headshot {
+    float: none;
+    display: block;
+    margin: 0 auto 1rem auto;
+    width: min(60vw, 320px);
+  }
+}

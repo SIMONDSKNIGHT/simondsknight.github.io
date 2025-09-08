@@ -1,5 +1,7 @@
 ---
 title: Work
+layout: default
+permalink: projects/
 ---
 
 <ul class="list">
