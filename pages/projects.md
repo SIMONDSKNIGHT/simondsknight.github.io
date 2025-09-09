@@ -4,12 +4,12 @@ layout: default
 permalink: projects/
 ---
 
-<ul class="list">
+<ul class="grid">
 {% assign ps = site.projects | sort: "year" | reverse %}
 {% for p in ps %}
   <li>
     <!--Title-->
-    <a href="{{ p.url | relative_url }}"><strong>{{ p.title }}</strong></a>
+    <a class="card" href="{{ p.url | relative_url }}"><strong>{{ p.title }}</strong></a>
 
     {% if p.summary %}<br><span class="muted">{{ p.summary }}</span>{% endif %}
 

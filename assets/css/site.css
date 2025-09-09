@@ -204,3 +204,65 @@ h1, h2, h3 { line-height: 1.25; }
     width: min(60vw, 320px);
   }
 }
+
+/* --- Fixed footer setup --- */
+/* Reserve vertical space for the fixed footer so content isn't hidden */
+:root { --footer-h: 220px; } /* tweak this after you see it */
+
+main { padding-bottom: var(--footer-h); }  /* prevents overlap */
+@media (max-width: 640px) {
+  :root { --footer-h: 260px; }           /* often needs a bit more on small screens */
+}
+
+/* Footer spans full width and is glued to the bottom of the viewport */
+#site-footer {
+  position: fixed;
+  left: 0; right: 0; bottom: 0;
+  width: 100%;
+  z-index: 100;              /* above page content */
+  border-top: 1px solid #eee;
+  background: inherit;       /* keep same bg as page; change if you want a band */
+  color: #666;
+  /* Your generous breathing room */
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}
+
+/* Center inner content and keep your existing layout */
+#site-footer .wrapper {
+  max-width: var(--w);
+  margin: 0 auto;
+  padding: 1rem;             /* matches your site spacing rhythm */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* 3 equal positions for links */
+#site-footer .footnav {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  justify-items: center;
+  align-items: center;
+  width: 100%;
+}
+
+#site-footer .footnav a {
+  margin: 0 !important;
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Fine print */
+#site-footer .lowerfooter {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  line-height: 1.2;
+  font-size: 0.8rem;
+  color: #999;
+  text-align: center;
+}
+#site-footer .lowerfooter small { display: block; margin: 0; }

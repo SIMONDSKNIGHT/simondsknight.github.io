@@ -1,35 +1,16 @@
 ---
 layout: default
-title: My Project
 ---
-<article class="project">
-    <header>
-        <h1>{{ page.title }}</h1>
+{{ content }}
 
-    {% if page.role %}<p><strong>Role:</strong> {{ page.role }}</p>{% endif %}
-    {% if page.year %}<p><strong>Year:</strong> {{ page.year }}</p>{% endif %}
+<div id="modal" class="modal" hidden>
+  <div class="modal__panel">
+    <button class="modal__close" aria-label="Close">×</button>
+    <div id="modal-content"></div>
+  </div>
+  <div class="modal__scrim"></div>
+</div>
 
-    <!-- 'stack' is an array in the project’s front matter; join to print neatly. -->
-    {% if page.stack %}<p><strong>Stack:</strong> {{ page.stack | join: ', ' }}</p>{% endif %}
 
-    <!-- 'links' is an array of {label, url} so you can link repo, docs, demo, etc. -->
-    {% if page.links %}
-      <p>
-        {% for l in page.links %}
-          <a href="{{ l.url }}">{{ l.label }}</a>{% unless forloop.last %} · {% endunless %}
-        {% endfor %}
-      </p>
-    {% endif %}
-  </header>
-
-  <!-- The Markdown body of the project file appears here. -->
-  {{ content }}
-
-  <!-- Optional bullet points for quick scanning. -->
-  {% if page.highlights %}
-    <h2>Highlights</h2>
-    <ul>
-      {% for h in page.highlights %}<li>{{ h }}</li>{% endfor %}
-    </ul>
-  {% endif %}
-</article>
+<!-- Projects-only JavaScript -->
+<script type="module" src="{{ '/assets/js/projects.js' | relative_url }}"></script>

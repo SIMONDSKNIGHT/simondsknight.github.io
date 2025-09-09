@@ -32,28 +32,23 @@
       {{ content }}
     </main>
 
-    <footer id="site-footer" class="footer">
-      <nav class="footnav" aria-label="Social">
-        <a href="https://www.linkedin.com/in/simon-knight-a37643230" target="_blank" rel="noopener">LinkedIn</a>
-        <a href="https://www.github.com/simondsknight" target="_blank" rel="noopener">GitHub</a>
-        <a href="mailto:knigsd@icloud.com">Email</a>
-      </nav>
+<footer id="site-footer">
+  <div class="wrapper">
+    <nav class="footnav" aria-label="Social">
+      <a href="https://www.linkedin.com/in/simon-knight-a37643230" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://www.github.com/simondsknight" target="_blank" rel="noopener">GitHub</a>
+      <a href="mailto:knigsd@icloud.com">Email</a>
+    </nav>
 
-      <div class="lowerfooter">
-        <small>© {{ site.time | date: '%Y' }} {{ site.title }}. All rights reserved.</small>
-        <small>Built with <a href="https://jekyllrb.com/">Jekyll</a>.</small>
-      </div>
-    </footer>
-
-    <!-- Projects modal host (safe to keep here so every page has it) -->
-    <div id="modal" class="modal" hidden>
-      <div class="modal__panel" role="dialog" aria-modal="true" aria-labelledby="modal-title">
-        <button class="modal__close" aria-label="Close">×</button>
-        <div id="modal-content"></div>
-      </div>
-      <div class="modal__scrim"></div>
+    <div class="lowerfooter">
+      <small>© {{ site.time | date: '%Y' }} {{ site.title }}. All rights reserved.</small>
+      <small>Built with <a href="https://jekyllrb.com/">Jekyll</a>.</small>
     </div>
+  </div>
+</footer>
 
-    <script type="module" src="{{ '/assets/js/site.js' | relative_url }}"></script>
+
+
+
   </body>
 </html>
