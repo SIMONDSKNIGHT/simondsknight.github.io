@@ -11,8 +11,7 @@
     <meta name="description" content="{{ page.excerpt | default: site.description | strip_html | strip }}">
     {% seo %}
   </head>
-  <body class="{{ page.body_class }}">
-
+  <body>
     <a class="skip" href="#main-content">Skip to content</a>
 
     <header id="site-header" class="header">
@@ -51,5 +50,6 @@
 
 
 
+    <script type="module" src="{{ '/assets/js/site.js' | relative_url }}"></script>
   </body>
 </html>
