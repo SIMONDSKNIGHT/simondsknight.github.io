@@ -14,3 +14,12 @@ I’m a newly graduated software engineer who enjoys building interesting projec
 - Based in GB 🇬🇧 open to remote/hybrid. Available to work in JP 🇯🇵 
 - Currently exploring roles in backend/platform, data tooling, and full-stack.
 - Email or contact me for a up to date CV/Resume: <a href="mailto:knigsd@icloud.com">knigsd@icloud.com</a> · <a href="https://github.com/simondsknight" target="_blank" rel="noopener">GitHub</a> · <a href="https://www.linkedin.com/in/simon-knight-a37643230" target="_blank" rel="noopener">LinkedIn</a>
+
+
+
+
+
+
+
+
+

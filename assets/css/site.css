@@ -24,18 +24,15 @@ body {
   grid-template-rows: auto 1fr auto;
 }
 
-/* Keep links quiet by default; underline on hover for clear affordance */
 a { color: inherit; text-decoration: none; }
 a:hover { text-decoration: underline; }
 
-/* .wrap and .wrapper center content and apply max width + padding */
 .wrap, .wrapper {
   max-width: var(--w);
   margin: 0 auto;
   padding: 1rem;
 }
 
-/* Header: simple horizontal layout with a light divider line */
 header {
     display: flex
 ;
@@ -48,13 +45,8 @@ header {
 }
 #site-header {
   margin-top: 1rem;
-
-  /* ≥ 5rem breathing space above nav & below fine print */
-    padding-top: 2rem;
+  padding-top: 2rem;
   padding-bottom: 3rem;
-
-
-  
   display: flex;
   flex-direction: column;
 
@@ -70,20 +62,15 @@ header {
 
 
 
-/* Brand area (site title + role) */
 .brand a { font-weight: 700; }
 .brand small { display: block; color: #666; }
 
-/* Top navigation links */
 header nav a { margin-left: 1rem; }
 
-/* Headings get a tighter line-height for nicer rhythm */
 h1, h2, h3 { line-height: 1.25; }
 
-/* Muted helper for secondary text (summaries, stacks) */
 .muted { color: #666; }
 
-/* Year "pill" floated right makes scanning easier without dominating */
 .pill {
   float: right;
   background: #f2f2f2;
@@ -93,14 +80,11 @@ h1, h2, h3 { line-height: 1.25; }
   color: #555;
 }
 
-/* Project list = no bullets + subtle dividers */
 .list { list-style: none; padding: 0; margin: 1rem 0; }
 .list li { padding: .75rem 0; border-bottom: 1px solid #eee; }
 
-/* On project pages, stack the small metadata lines tightly */
 .project header p { margin: 0.25rem 0; }
 
-/* Accessibility: make the "skip to content" link visible when focused */
 .skip { position: absolute; left: -9999px; }
 .skip:focus {
   left: 1rem; top: 1rem;
@@ -108,16 +92,11 @@ h1, h2, h3 { line-height: 1.25; }
   padding: .5rem;
 }
 
-/* ---- FOOTER ---- */
 #site-footer {
   border-top: 1px solid #eee;
   margin-top: 2rem;
-
-  /* ≥ 5rem breathing space above nav & below fine print */
   padding-top: 5rem;
   padding-bottom: 5rem;
-
-
   color: #666;
   display: flex;
   flex-direction: column;
@@ -126,7 +105,6 @@ h1, h2, h3 { line-height: 1.25; }
 
 
 
-/* Social nav: 3 equal slots, centered regardless of link length */
 #site-footer .footnav {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -137,14 +115,13 @@ h1, h2, h3 { line-height: 1.25; }
 }
 
 #site-footer .footnav a {
-  margin: 0 !important;  /* override global nav spacing */
+  margin: 0 !important;  
   text-decoration: none;
   color: inherit;
 }
 
-/* Fine print: tucked at bottom, tight spacing */
 #site-footer .lowerfooter {
-  margin-top: 2rem;   /* gap between nav and fine print */
+  margin-top: 2rem;   
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -170,9 +147,7 @@ h1, h2, h3 { line-height: 1.25; }
   font-size: 3rem;
   margin: 0 .05em 0 .1em;
   vertical-align: -0.1em;
-  /* For safety - prevent weird effects in some browsers */
   display: inline-block;
-  /* Fixes issue where emojis were slightly off center vertically in Firefox */
   position: relative;
   top: -0.05em;
 }
@@ -185,17 +160,16 @@ h1, h2, h3 { line-height: 1.25; }
 
 
 
-/* About page headshot: right-aligned, responsive, readable text wrap */
 .headshot {
   float: right;
   width: min(260px, 35vw);
   height: auto;
   border-radius: 50%;
-  margin: 0 0 1rem 1rem;   /* space to the left/bottom of the image */
+  margin: 0 0 1rem 1rem;  
   object-fit: cover;
 }
 
-/* Avoid float on narrow screens */
+
 @media (max-width: 640px) {
   .headshot {
     float: none;
@@ -205,40 +179,33 @@ h1, h2, h3 { line-height: 1.25; }
   }
 }
 
-/* --- Fixed footer setup --- */
-/* Reserve vertical space for the fixed footer so content isn't hidden */
-:root { --footer-h: 220px; } /* tweak this after you see it */
 
-main { padding-bottom: var(--footer-h); }  /* prevents overlap */
+main { padding-bottom: calc(var(--footer-h)+5rem); }  
 @media (max-width: 640px) {
-  :root { --footer-h: 260px; }           /* often needs a bit more on small screens */
+  :root { --footer-h: 260px; }          
 }
 
-/* Footer spans full width and is glued to the bottom of the viewport */
 #site-footer {
   position: fixed;
   left: 0; right: 0; bottom: 0;
   width: 100%;
-  z-index: 100;              /* above page content */
+  z-index: 100;             
   border-top: 1px solid #eee;
-  background: inherit;       /* keep same bg as page; change if you want a band */
+  background: inherit;      
   color: #666;
-  /* Your generous breathing room */
-  padding-top: 5rem;
-  padding-bottom: 5rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
 }
 
-/* Center inner content and keep your existing layout */
 #site-footer .wrapper {
   max-width: var(--w);
   margin: 0 auto;
-  padding: 1rem;             /* matches your site spacing rhythm */
+  padding: 1rem;             
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-/* 3 equal positions for links */
 #site-footer .footnav {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -253,7 +220,6 @@ main { padding-bottom: var(--footer-h); }  /* prevents overlap */
   color: inherit;
 }
 
-/* Fine print */
 #site-footer .lowerfooter {
   margin-top: 2rem;
   display: flex;
@@ -265,4 +231,13 @@ main { padding-bottom: var(--footer-h); }  /* prevents overlap */
   color: #999;
   text-align: center;
 }
-#site-footer .lowerfooter small { display: block; margin: 0; }
+#site-footer .lowerfooter small { 
+    display: block; margin: 0; }
+:root { --scroll-cushion: 0vh; } /* default: no extra runway */
+
+/* make room for the fixed footer + any requested scroll cushion */
+main {
+  padding-bottom: calc(var(--footer-h, 220px) + var(--scroll-cushion));
+}
+/* Give the About page a big runway so the last line can scroll to the top */
+body.about-page { --scroll-cushion: 90vh; }  /* tweak 50–90vh to taste */

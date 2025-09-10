@@ -11,7 +11,8 @@
     <meta name="description" content="{{ page.excerpt | default: site.description | strip_html | strip }}">
     {% seo %}
   </head>
-  <body>
+  <body class="{{ page.body_class }}">
+
     <a class="skip" href="#main-content">Skip to content</a>
 
     <header id="site-header" class="header">
