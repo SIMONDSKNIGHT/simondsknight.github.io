@@ -2,9 +2,17 @@
 :root {
   --w: 860px;          /* max readable line width */
   --gap: 1rem;         /* base spacing */
-  --footer-h: 200px;   /* reserved space for fixed footer (tune) */
+  --footer-h: 300px;   /* reserved space for fixed footer (tune) */
   /* Optional per-page runway so the last line can scroll to the top */
   --scroll-cushion: 0px;
+  --main-height : 100vh;
+}
+body.about-page{ 
+     min-height:calc(1.5*var(--main-height));
+}   /* try 50–90vh to taste */
+.sticky {
+  position: sticky;
+  
 }
 
 * { box-sizing: border-box; }
@@ -71,13 +79,21 @@ header {
   border-bottom: 1px solid #eee;
 }
 
+/* Header: make it sticky */
 #site-header {
-  margin-top: 1rem;
-  padding-top: 2rem;
+  position: sticky;     /* <- was missing */
+  top: 0;               /* <- required for sticky to engage */
+  z-index: 200;         /* sit above page content */
+  background: #fff;     /* avoid see-through when it overlaps content */
+  /* your existing rules... */
+  /*margin-top: 1rem;*/
+  padding-top: 3rem;
   padding-bottom: 3rem;
   display: flex;
   flex-direction: column;
+  border-bottom: 1px solid #eee; /* move border-bottom here if you want the line across */
 }
+
 
 /* 4 evenly spaced top nav items */
 .headnav {
