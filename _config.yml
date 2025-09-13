@@ -13,6 +13,7 @@ baseurl: ""
 collections:
   projects:
     output: true
+    permalink: /projects/:name/
 #default front matter for all pages unless overridden
 defaults:
   -
