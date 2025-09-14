@@ -35,7 +35,6 @@ permalink: /projects/
         </p>
       {% endif %}
     </header>
-
     <section class="project-modal__layout">
       <div class="project-modal__media">
         {% if p.gif %}

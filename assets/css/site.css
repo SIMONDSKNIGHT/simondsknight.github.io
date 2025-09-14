@@ -247,13 +247,7 @@ main::after{
   .headnav{ width: 90%; }
 }
 
-/* Dark mode */
-@media (prefers-color-scheme: dark){
-  body{ background: #0b0b0b; color: #e7e7e7; }
-  #site-header, #site-footer{ border-color: #222; }
-  .muted{ color: #aaa; }
-  .pill{ background: #1b1b1b; color: #bbb; }
-}
+
 
 /* =========================
    PER-PAGE OVERRIDES
@@ -261,3 +255,29 @@ main::after{
 /* Give the About page extra runway so the last line can scroll to the top.
    Requires: body_class: about-page (in about.md) and <body class="{{ page.body_class }}"> in the layout. */
 body.about-page{ --scroll-cushion: 30vh; }
+:root{
+  /* …your existing vars… */
+  --bg: #fff;
+  --fg: #111;
+  --muted: #666;
+  --surface: #fff;   /* cards, modal panels */
+  --border: #eee;
+}
+
+body{ background: var(--bg); color: var(--fg); }
+#site-header{ background: var(--bg); border-bottom: 1px solid var(--border); }
+#site-footer{ background: var(--bg); border-top: 1px solid var(--border); color: var(--muted); }
+.card{ background: var(--surface); border: 1px solid var(--border); }
+.modal__panel{ background: var(--surface); color: var(--fg); }
+.muted{ color: var(--muted); }
+
+/* Dark theme overrides */
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg: #0b0b0b;
+    --fg: #e7e7e7;
+    --muted: #aaa;
+    --surface: #111;
+    --border: #222;
+  }
+}
