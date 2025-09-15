@@ -7,23 +7,25 @@ permalink: /projects/
 # Projects
 
 <ul class="grid">
-{% assign ps = site.projects | sort: "year" | reverse %}
-{% for p in ps %}
-  <li>
-    <a class="card" href="{{ p.url | relative_url }}" data-target="tpl-{{ p.slug | default: p.name }}">
-      {% if p.thumb %}
-        <div class="card__media">
-          <img class="card__img" src="{{ p.thumb | relative_url }}" alt="" width="480" height="300" loading="lazy">
+  {% assign ps = site.projects | sort: "year" | reverse %}
+  {% for p in ps %}
+    <li>
+      <a class="card" href="{{ p.url | relative_url }}" data-target="tpl-{{ p.slug | default: p.name }}">
+        {% if p.thumb %}
+          <div class="card__media">
+            <img class="card__img" src="{{ p.thumb | relative_url }}" alt="" loading="lazy">
+          </div>
+        {% endif %}
+        <div class="card__body">
+          <h3>{{ p.title }}</h3>
+          {% if p.summary %}<p>{{ p.summary }}</p>{% endif %}
         </div>
-      {% endif %}
-      <div class="card__body">
-        <h3>{{ p.title }}</h3>
-        {% if p.summary %}<p>{{ p.summary }}</p>{% endif %}
-      </div>
-    </a>
-  </li>
-{% endfor %}
+      </a>
+    </li>
+  {% endfor %}
 </ul>
+
+
 
 
 {% for p in ps %}

@@ -28,6 +28,7 @@ body{
   margin: 0 auto;
   padding: 1rem;
 }
+.center{ text-align: center; }
 
 /* Links */
 a { color: inherit; text-decoration: none; }
@@ -157,53 +158,87 @@ main::after{
   display: block;
   height: calc(var(--footer-h) + var(--scroll-cushion, 0px));
 }
-
 /* =========================
    PROJECTS: LISTS & CARDS
    ========================= */
-.list{ list-style: none; padding: 0; margin: 1rem 0; }
-.list li{ padding: .75rem 0; border-bottom: 1px solid #eee; }
-
+/* === Grid: exactly 2 columns (1 on small screens) === */
 .grid{
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-  gap: var(--gap);
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem;
   list-style: none;
   padding: 0;
   margin: 1.5rem 0;
 }
-.card{
-  border: 1px solid #eee; border-radius: 12px; overflow: hidden;
-  background: #fff; cursor: pointer;
-  transition: transform .15s ease, box-shadow .15s ease;
+@media (max-width: 720px){
+  .grid{ grid-template-columns: 1fr; }
 }
-.card:hover{ transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,.06); }
-.card img{ width: 100%; height: 150px; object-fit: cover; display: block; }
-.card .card__body{ padding: .75rem .9rem; }
-.card h3{ margin: 0 0 .25rem; font-size: 1rem; }
-.card p{ margin: 0; color: #555; font-size: .95rem; }
 
-/* =========================
-   MODAL (Projects page)
-   ========================= */
-.modal{ position: fixed; inset: 0; display: grid; z-index: 1000; }
-.modal[hidden]{ display: none; }
-.modal__scrim{ position: absolute; inset: 0; background: rgba(0,0,0,.45); backdrop-filter: blur(2px); }
-.modal__panel{
-  position: relative; z-index: 1;
-  margin: 3vh auto; width: min(1100px, 96vw); max-height: 94vh; overflow: auto;
-  background: #fff; border-radius: 12px; padding: 1rem 1rem 2rem;
-  box-shadow: 0 20px 60px rgba(0,0,0,.25);
+/* === Card: square, no weird hover gap === */
+.card{
+  display: grid;                       /* grid lets us do media (1fr) + text (auto) */
+  grid-template-rows: 1fr auto;        /* media fills, body hugs content */
+  aspect-ratio: 1 / 1;                 /* perfect square card */
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;                     /* clip inner corners & image */
+  text-decoration: none;                /* keep link quiet */
+  cursor: pointer;
+  transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease;
 }
-.modal__close{
-  position: sticky; top: 0; float: right;
-  border: 0; background: transparent; font-size: 2rem; line-height: 1; cursor: pointer;
+.card:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0,0,0,.06);
 }
-.project-modal__layout{
-  display: grid; grid-template-columns: 1.2fr 1fr; gap: 1rem; align-items: start;
+
+/* Prevent the “invisible clickable line-height” above/below */
+.grid > li { margin: 0; }
+.card * { line-height: 1.35; }         /* consistent inner rhythm */
+
+/* === Media area: fill the top square space === */
+.card__media{
+  position: relative;
+  overflow: hidden;
 }
-.project-modal__media{ position: relative; }
-.project-media{ width: 100%; height: auto; border-radius: 10px; display: block; }
+
+/* Image covers the media area (square top), centered */
+.card__img{
+  position: absolute;
+  inset: 0;                            /* stretch to fill the media area */
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Give the media area an inner margin without breaking the square:
+   use padding-top to create a square box, then absolute image fills it */
+.card__media::before{
+  content: "";
+  display: block;
+  padding-top: 62%;                    /* image takes ~top 62% of the square; tweak to taste */
+}
+
+/* Subtle inner elevation for the image itself (optional) */
+.card__media { box-shadow: inset 0 0 0 0 rgba(0,0,0,0); }
+.card__img { box-shadow: 0 8px 24px rgba(0,0,0,.06); }
+
+/* === Text area === */
+.card__body{
+  padding: .75rem .9rem 1rem;
+}
+.card h3{
+  margin: 0 0 .35rem;
+  font-size: 1rem;
+}
+.card p{
+  margin: 0;
+  color: var(--muted);
+  font-size: .95rem;
+}
+
+/* Kill any legacy rule that forces .card img to 100%/fixed height */
+.card img{ width: auto; height: auto; }
 
 /* =========================
    ABOUT PAGE EXTRAS
@@ -281,28 +316,3 @@ body{ background: var(--bg); color: var(--fg); }
     --border: #222;
   }
 }
-/* Let the card keep its border / radius, but don't clip inner shadows */
-.card { border: 1px solid #eee; border-radius: 12px; background: #fff; overflow: visible; }
-
-/* Add a little breathing room around the media */
-.card__media { padding: .75rem .9rem 0; }
-
-/* Make the image NOT full-width and give it a shadow */
-.card__img {
-  display: block;
-  width: 92%;               /* less than 100% so it doesn't touch edges */
-  margin: 0 auto;           /* center it */
-  aspect-ratio: 16 / 10;    /* consistent thumbnail ratio; tweak if you like */
-  object-fit: cover;
-  border-radius: 10px;
-
-  /* your drop shadow */
-  box-shadow: 0 8px 24px rgba(0,0,0,.06);
-  border: 1px solid rgba(0,0,0,.10);
-}
-
-/* Tighten body padding so text lines up nicely with image padding */
-.card .card__body { padding: .75rem .9rem 1rem; }
-
-/* Optional: remove the old global that forces imgs to 100% width & fixed height */
-.card img { width: auto; height: auto; }
