@@ -1,18 +1,16 @@
 ---
 layout: default
 ---
-{{ content }}
+<article class="wrapper project">
+  <header>
+    <h1>{{ page.title }}</h1>
+    {% if page.stack %}
+      <p class="muted"><strong>Stack:</strong> {{ page.stack | join: ', ' }}</p>
+    {% endif %}
+    {% if page.year %}
+      <p class="muted"><strong>Year:</strong> {{ page.year }}</p>
+    {% endif %}
+  </header>
 
-<div id="modal" class="modal" hidden>
-  <div class="modal__panel">
-    <button class="modal__close" aria-label="Close">×</button>
-    <div id="modal-content"></div>
-  </div>
-  <div class="modal__scrim"></div>
-</div>
-
-
-<!-- Projects-only JavaScript -->
-<link rel="stylesheet" href="{{ '/assets/css/site.css' | relative_url }}">
-
-<script type="module" src="{{ '/assets/js/projects.js' | relative_url }}"></script>
+  {{ content }}
+</article>

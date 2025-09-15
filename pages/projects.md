@@ -1,6 +1,6 @@
 ---
 title: Projects
-layout: projects
+layout: default      
 permalink: /projects/
 ---
 
@@ -11,7 +11,11 @@ permalink: /projects/
 {% for p in ps %}
   <li>
     <a class="card" href="{{ p.url | relative_url }}" data-target="tpl-{{ p.slug | default: p.name }}">
-      {% if p.thumb %}<img src="{{ p.thumb | relative_url }}" alt="" width="480" height="300" loading="lazy">{% endif %}
+      {% if p.thumb %}
+        <div class="card__media">
+          <img class="card__img" src="{{ p.thumb | relative_url }}" alt="" width="480" height="300" loading="lazy">
+        </div>
+      {% endif %}
       <div class="card__body">
         <h3>{{ p.title }}</h3>
         {% if p.summary %}<p>{{ p.summary }}</p>{% endif %}
@@ -20,6 +24,7 @@ permalink: /projects/
   </li>
 {% endfor %}
 </ul>
+
 
 {% for p in ps %}
 <template id="tpl-{{ p.slug | default: p.name }}">
@@ -52,3 +57,15 @@ permalink: /projects/
   </article>
 </template>
 {% endfor %}
+
+<!-- Modal host (only on the Projects page) -->
+<div id="modal" class="modal" hidden>
+  <div class="modal__panel" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <button class="modal__close" aria-label="Close">×</button>
+    <div id="modal-content"></div>
+  </div>
+  <div class="modal__scrim"></div>
+</div>
+
+<!-- Page-specific JS (only loaded on /projects/) -->
+<script type="module" src="{{ '/assets/js/projects.js' | relative_url }}"></script>

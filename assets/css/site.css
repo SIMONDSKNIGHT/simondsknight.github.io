@@ -281,3 +281,28 @@ body{ background: var(--bg); color: var(--fg); }
     --border: #222;
   }
 }
+/* Let the card keep its border / radius, but don't clip inner shadows */
+.card { border: 1px solid #eee; border-radius: 12px; background: #fff; overflow: visible; }
+
+/* Add a little breathing room around the media */
+.card__media { padding: .75rem .9rem 0; }
+
+/* Make the image NOT full-width and give it a shadow */
+.card__img {
+  display: block;
+  width: 92%;               /* less than 100% so it doesn't touch edges */
+  margin: 0 auto;           /* center it */
+  aspect-ratio: 16 / 10;    /* consistent thumbnail ratio; tweak if you like */
+  object-fit: cover;
+  border-radius: 10px;
+
+  /* your drop shadow */
+  box-shadow: 0 8px 24px rgba(0,0,0,.06);
+  border: 1px solid rgba(0,0,0,.10);
+}
+
+/* Tighten body padding so text lines up nicely with image padding */
+.card .card__body { padding: .75rem .9rem 1rem; }
+
+/* Optional: remove the old global that forces imgs to 100% width & fixed height */
+.card img { width: auto; height: auto; }

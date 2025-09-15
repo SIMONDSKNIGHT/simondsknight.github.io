@@ -19,4 +19,10 @@ defaults:
   -
     scope: {path: ""}
     values: {layout: "default"}
+  - scope: { path: "", type: "projects" }
+    values:
+      layout: project
+
+
+
 
