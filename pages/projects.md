@@ -5,14 +5,14 @@ permalink: /projects/
 ---
 
 # Projects
-
 <ul class="grid">
   {% assign ps = site.projects | sort: "year" | reverse %}
   {% for p in ps %}
     <li>
       <a class="card" href="{{ p.url | relative_url }}" data-target="tpl-{{ p.slug | default: p.name }}">
         {% if p.thumb %}
-          <div class="card__media">
+          <div class="card__media"
+               style="--thumb-bg: {{ p.thumb_bg | default: site.thumb_bg | default: '#111111' }};">
             <img class="card__img" src="{{ p.thumb | relative_url }}" alt="" loading="lazy">
           </div>
         {% endif %}
@@ -24,6 +24,7 @@ permalink: /projects/
     </li>
   {% endfor %}
 </ul>
+
 
 
 

@@ -4,8 +4,8 @@ title: Undergraduate Dissertation — Investigating Bias in Whisper
 summary: Testing the Whisper very large language model (VLLM) for bias in speech recognition performance across speaker accents.
 year: 2024
 stack: [Python, PyTorch, Data Analysis, Statistics]
-thumb: /assets/img/ugdiss-thumb.jpg   # card image (fill in)
-hero:  /assets/img/ugdiss-hero.jpg    # big still (fallback) (fill in)
+thumb: /assets/img/UOE.png  # card image (fill in)
+hero:  /assets/img/UOE.png    # big still (fallback) (fill in)
 gif:   /assets/gif/ugdiss.gif         # animated demo (optional) (fill in)
 links:
   - {label: Dissertation PDF, url: "LINK_TO_UG_DISS_PDF"}

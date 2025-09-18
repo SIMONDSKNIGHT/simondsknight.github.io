@@ -22,6 +22,11 @@ defaults:
   - scope: { path: "", type: "projects" }
     values:
       layout: project
+site:
+  thumb_bg: "#111111"
+
+
+
 
 
 

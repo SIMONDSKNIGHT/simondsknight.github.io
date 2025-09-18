@@ -316,3 +316,18 @@ body{ background: var(--bg); color: var(--fg); }
     --border: #222;
   }
 }
+.project-card-thumb {
+  background-color: var(--thumb-bg);
+  border-radius: 8px;          /* optional */
+  overflow: hidden;            /* optional, to clip corners */
+  aspect-ratio: 16 / 9;        /* or whatever your cards use */
+  display: grid;               /* centers images that are smaller */
+  place-items: center;
+}
+
+.project-card-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;         /* keeps full logo visible */
+  background: transparent;     /* let the container color show through */
+}
