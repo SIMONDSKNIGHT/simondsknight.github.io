@@ -3,8 +3,9 @@ title: Blog
 layout: default
 permalink: /blog/
 ---
-
-**Whoops!!!**
+<h1 class="center">
+Whoops!!!
+</h1>
 <p class="center">
 You've caught me being a little lazy...
 
