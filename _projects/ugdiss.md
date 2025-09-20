@@ -29,8 +29,6 @@ worse performance on were highlighted, with discussion about the potential cause
 of the bias, or patterns expressed between groups also explored.The results were also
 statistically validated to see if the distributions of WER values were significantly
 different.
-i
-
 
 ## Implementation
 
@@ -42,4 +40,4 @@ i
 
 - Represented the **largest dataset ever used to test Whisper** (by speaker number and variety) at the time of dissertation.  
 - Demonstrated systematic bias in Whisper’s performance based on speaker accent.  
-- Built reproducible pipelines for evaluation and analysis.  
+- Built reproducible pipelines for evaluation and analysis of ML projects.  

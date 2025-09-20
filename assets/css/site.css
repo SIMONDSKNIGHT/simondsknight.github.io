@@ -331,61 +331,40 @@ body{ background: var(--bg); color: var(--fg); }
   object-fit: contain;         /* keeps full logo visible */
   background: transparent;     /* let the container color show through */
 }
-/* Modal on top */
+/* Modal overlay */
 .modal {
   position: fixed;
   inset: 0;
   z-index: 9999;
 }
 
-/* Backdrop behind the dialog (NO BLUR) */
+/* Scrim that blurs the page behind it */
 .modal__scrim {
   position: absolute;
   inset: 0;
-  background: rgba(0,0,0,0.6);
-  /* REMOVE this line if it exists: backdrop-filter: blur(2px); */
-  z-index: 0;
+  z-index: 0;                               /* under the dialog */
+  background: rgba(15,18,22,0.55);          /* must have alpha for backdrop-filter to render */
+  backdrop-filter: blur(8px) saturate(110%);/* <- the blur you want */
 }
 
-/* Centered panel on top of scrim */
+/* Centered dialog panel (stays sharp) */
 .modal__dialog {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%); /* fine to keep */
-  z-index: 1;                        /* ensure above scrim */
+  z-index: 1;                                /* above the scrim */
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
   width: min(96vw, 1100px);
   height: min(90vh, 900px);
-  background: #0b0e12;
-  color: inherit;
+  background: var(--surface, #111);          /* solid background = crisp text */
+  color: var(--fg, #e7e7e7);
   border-radius: 14px;
-  box-shadow: 0 12px 48px rgba(0,0,0,0.35);
+  box-shadow: 0 12px 48px rgba(0,0,0,.35);
   overflow: hidden;
   display: grid;
   grid-template-rows: auto 1fr;
 }
 
-/* Close button */
-.modal__close {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  height: 40px;
-  width: 40px;
-  line-height: 40px;
-  border: none;
-  border-radius: 999px;
-  background: rgba(255,255,255,0.08);
-  color: #fff;
-  font-size: 20px;
-  cursor: pointer;
-  transition: background 0.15s ease;
-}
-.modal__close:hover { background: rgba(255,255,255,0.16); }
-
-/* Scrollable content area */
-.modal__content {
-  height: 100%;
-  overflow: auto;
-  padding: 24px;
-}
+/* Close button & scroll area (keep) */
+.modal__close { position:absolute; top:10px; right:10px; width:40px; height:40px; border:0; border-radius:999px; background:rgba(255,255,255,.1); color:#fff; font-size:20px; cursor:pointer; }
+.modal__close:hover { background:rgba(255,255,255,.2); }
+.modal__content { height:100%; overflow:auto; padding:24px; }
