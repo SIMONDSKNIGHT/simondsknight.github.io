@@ -8,9 +8,30 @@ thumb: /assets/img/UOE.png   # card image (fill in)
 hero:  /assets/img/UOE.png    # big still (fallback) (fill in)
 gif:   /assets/gif/mdiss.gif         # animated demo (optional) (fill in)
 links:
-  - {label: Dissertation PDF, url: "LINK_TO_M_DISS_PDF"}
+  - { label: "Dissertation PDF", url: "{{ '/assets/pdfs/MINF.pdf' | relative_url }}" }
   - {label: Repo, url: "LINK_TO_REPO_IF_ANY"}
 ---
+
+
+
+# -- Abstract --
+
+This dissertation investigates the phenomenon of hallucinations in large-scale Auto-
+matic Speech Recognition (ASR) systems, with a focus on OpenAI’s Whisper model. It
+begins by replicating and extending the findings of Careless Whisper (Koenecke et al.),
+verifying that hallucinations in Whisper are a recurring and unpredictable phenomenon,
+and classifying their potential harms. It further identifies novel hallucination behaviours
+in Whisper-Turbo, including the emergence of fabricated context prompts not previ-
+ously documented. Building on these findings, the second half of the work explores
+inducing hallucinations in Whisper. More specifically, whether targeted hallucina-
+tions conditioned on speaker accent can be introduced through fine-tuning. Although
+accent-specific hallucinations were not successfully achieved, the experiments show
+that hallucinatory behaviour can be modulated to some degree. The work concludes
+that while practical Hallucination inducing data poisoning attacks on ASR systems
+remain challenging, they are theoretically plausible and warrant further investigation.
+This dissertation contributes experimental methods, technical observations, and new
+questions to the growing field of ASR robustness and safety.
+i
 
 ## Implementation
 

@@ -24,3 +24,5 @@ Demonstration of a responsive developer portfolio build with **Jekyll**, **HTML/
 
 Although this is not something that is partsicularly called for, I think it is good for skill demonstration if I turn this into a Jekyll Template 
 
+The site is hosted at [simondsknight.github.io]
+
