@@ -331,39 +331,41 @@ body{ background: var(--bg); color: var(--fg); }
   object-fit: contain;         /* keeps full logo visible */
   background: transparent;     /* let the container color show through */
 }
-/* === Modal overlay === */
+/* Modal on top */
 .modal {
   position: fixed;
-  inset: 0;                 /* top:0; right:0; bottom:0; left:0 */
-  z-index: 9999;            /* above everything */
+  inset: 0;
+  z-index: 9999;
 }
 
+/* Backdrop behind the dialog (NO BLUR) */
 .modal__scrim {
   position: absolute;
   inset: 0;
-  background: rgba(15, 18, 22, 0.72); /* dark translucent backdrop */
-  backdrop-filter: blur(2px);          /* subtle blur (optional) */
+  background: rgba(0,0,0,0.6);
+  /* REMOVE this line if it exists: backdrop-filter: blur(2px); */
+  z-index: 0;
 }
 
-/* Large “page-like” panel */
+/* Centered panel on top of scrim */
 .modal__dialog {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
-
-  width: min(96vw, 1100px);  /* wide on desktop, responsive on mobile */
+  transform: translate(-50%, -50%); /* fine to keep */
+  z-index: 1;                        /* ensure above scrim */
+  width: min(96vw, 1100px);
   height: min(90vh, 900px);
-  background: #0b0e12;       /* or your site card bg */
+  background: #0b0e12;
   color: inherit;
   border-radius: 14px;
   box-shadow: 0 12px 48px rgba(0,0,0,0.35);
-  overflow: hidden;          /* clip inner corners */
+  overflow: hidden;
   display: grid;
-  grid-template-rows: auto 1fr; /* header (close) + scrollable content */
+  grid-template-rows: auto 1fr;
 }
 
-/* Close button in the corner */
+/* Close button */
 .modal__close {
   position: absolute;
   top: 10px;
@@ -386,13 +388,4 @@ body{ background: var(--bg); color: var(--fg); }
   height: 100%;
   overflow: auto;
   padding: 24px;
-}
-
-/* Optional: for narrow screens, give it a bit more height */
-@media (max-width: 640px) {
-  .modal__dialog {
-    width: 96vw;
-    height: 92vh;
-    border-radius: 10px;
-  }
 }

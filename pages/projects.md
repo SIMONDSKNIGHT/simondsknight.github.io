@@ -61,14 +61,7 @@ permalink: /projects/
 </template>
 {% endfor %}
 
-<!-- Modal host (only on the Projects page) -->
-<div id="modal" class="modal" hidden>
-  <div class="modal__panel" role="dialog" aria-modal="true" aria-labelledby="modal-title">
-    <button class="modal__close" aria-label="Close">×</button>
-    <div id="modal-content"></div>
-  </div>
-  <div class="modal__scrim"></div>
-</div>
+
 
 <!-- Page-specific JS (only loaded on /projects/) -->
 <script type="module" src="{{ '/assets/js/projects.js' | relative_url }}"></script>
