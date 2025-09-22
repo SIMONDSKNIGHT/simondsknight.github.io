@@ -1,34 +1,32 @@
 ---
 title: Projects
-layout: default      
+layout: default
 permalink: /projects/
 ---
 
 # Projects
+
 <ul class="grid">
-  {% assign ps = site.projects | sort: "year" | reverse %}
-  {% for p in ps %}
-    <li>
-      <a class="card" href="{{ p.url | relative_url }}" data-target="tpl-{{ p.slug | default: p.name }}">
-        {% if p.thumb %}
-          <div class="card__media"
-               style="--thumb-bg: {{ p.thumb_bg | default: site.thumb_bg | default: '#111111' }};">
-            <img class="card__img" src="{{ p.thumb | relative_url }}" alt="" loading="lazy">
-          </div>
-        {% endif %}
-        <div class="card__body">
-          <h3>{{ p.title }}</h3>
-          {% if p.summary %}<p>{{ p.summary }}</p>{% endif %}
+{% assign ps = site.projects | sort: "year" | reverse %}
+{% for p in ps %}
+  <li>
+    <!-- real link (fallback) + modal target -->
+    <a class="card" href="{{ p.url | relative_url }}" data-target="tpl-{{ p.slug | default: p.name }}">
+      {% if p.thumb %}
+        <div class="card__media">
+          <img class="card__img" src="{{ p.thumb | relative_url }}" alt="" loading="lazy">
         </div>
-      </a>
-    </li>
-  {% endfor %}
+      {% endif %}
+      <div class="card__body">
+        <h3>{{ p.title }}</h3>
+        {% if p.summary %}<p>{{ p.summary }}</p>{% endif %}
+      </div>
+    </a>
+  </li>
+{% endfor %}
 </ul>
 
-
-
-
-
+<!-- hidden templates for modal content -->
 {% for p in ps %}
 <template id="tpl-{{ p.slug | default: p.name }}">
   <article class="project-modal">
@@ -46,11 +44,11 @@ permalink: /projects/
     <section class="project-modal__layout">
       <div class="project-modal__media">
         {% if p.gif %}
-          <img class="project-media" src="{{ p.gif | relative_url }}" alt="" width="960" height="540" loading="lazy">
+          <img class="project-media" src="{{ p.gif | relative_url }}" alt="" loading="lazy">
         {% elsif p.hero %}
-          <img class="project-media" src="{{ p.hero | relative_url }}" alt="" width="960" height="540" loading="lazy">
+          <img class="project-media" src="{{ p.hero | relative_url }}" alt="" loading="lazy">
         {% elsif p.thumb %}
-          <img class="project-media" src="{{ p.thumb | relative_url }}" alt="" width="960" height="540" loading="lazy">
+          <img class="project-media" src="{{ p.thumb | relative_url }}" alt="" loading="lazy">
         {% endif %}
       </div>
       <div class="project-modal__details">
@@ -61,7 +59,14 @@ permalink: /projects/
 </template>
 {% endfor %}
 
+<!-- modal host -->
+<div id="modal" class="modal" hidden>
+  <div class="modal__panel" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <button class="modal__close" aria-label="Close">×</button>
+    <div id="modal-content"></div>
+  </div>
+  <div class="modal__scrim"></div>
+</div>
 
-
-<!-- Page-specific JS (only loaded on /projects/) -->
+<!-- page-specific js -->
 <script type="module" src="{{ '/assets/js/projects.js' | relative_url }}"></script>

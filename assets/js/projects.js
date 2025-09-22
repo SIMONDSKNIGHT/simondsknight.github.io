@@ -1,127 +1,61 @@
-// /assets/js/projects.js
-(() => {
-  'use strict';
+// assets/js/projects.js
 
-  // Run after DOM is ready (safe with <script defer> too)
-  const ready = (fn) => {
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', fn, { once: true });
-    } else {
-      fn();
-    }
-  };
+const modal = document.getElementById('modal');
+const modalContent = document.getElementById('modal-content');
+const closeBtn = modal?.querySelector('.modal__close');
+const scrim = modal?.querySelector('.modal__scrim');
 
-  ready(() => {
-    const modal        = document.getElementById('modal');
-    const modalContent = document.getElementById('modal-content');
-    const closeBtn     = document.querySelector('.modal__close');
-    const scrim        = document.querySelector('.modal__scrim');
+// open modal from a template id; return true on success
+function openModalFromTemplateId(id) {
+  const tpl = document.getElementById(id);
+  if (!tpl || !modal || !modalContent) return false;
 
-    if (!modal || !modalContent) {
-      console.warn('projects.js: Missing #modal or #modal-content in the DOM.');
-      return;
-    }
+  modalContent.innerHTML = '';
+  modalContent.appendChild(tpl.content.cloneNode(true));
+  modal.hidden = false;
+  document.body.style.overflow = 'hidden';
+  return true;
+}
 
-    let lastFocused = null;
+function closeModal() {
+  if (!modal || !modalContent) return;
+  modal.hidden = true;
+  modalContent.innerHTML = '';
+  document.body.style.overflow = '';
+  clearHash();
+}
 
-    const lockScroll = (lock) => {
-      document.body.style.overflow = lock ? 'hidden' : '';
-    };
+function clearHash() {
+  history.replaceState(null, '', location.pathname + location.search);
+}
 
-    const focusTrap = (enable) => {
-      if (!enable) return;
-      // Focus first focusable element, fallback to close button
-      const focusable = modal.querySelectorAll(
-        'a[href], button, textarea, input, select, [tabindex]:not([tabindex="-1"])'
-      );
-      const first = focusable[0] || closeBtn || modal;
-      first.focus();
-    };
+// click handler: try modal; if anything fails, let the link navigate normally
+document.addEventListener('click', (e) => {
+  const a = e.target.closest('a.card[data-target]');
+  if (!a) return;
 
-    const getTplIdFromHash = () => {
-      // supports #p=slug
-      const hash = location.hash.startsWith('#') ? location.hash.slice(1) : location.hash;
-      const params = new URLSearchParams(hash);
-      const p = params.get('p');
-      return p ? `tpl-${decodeURIComponent(p)}` : null;
-    };
+  // modified clicks/new tab/external? let browser do it
+  if (a.target === '_blank' || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
 
-    const setHashForTpl = (tplId) => {
-      const pid = tplId.replace(/^tpl-/, '');
-      history.replaceState(null, '', `#p=${encodeURIComponent(pid)}`);
-    };
+  const id = a.dataset.target;
+  if (!id) return;
 
-    const clearHash = () => {
-      history.replaceState(null, '', location.pathname + location.search);
-    };
+  // prevent navigation only if we successfully opened the modal
+  const ok = openModalFromTemplateId(id);
+  if (ok) {
+    e.preventDefault();
+    history.replaceState(null, '', `#p=${id.replace(/^tpl-/, '')}`);
+  }
+});
 
-    const openModalFromTemplateId = (tplId) => {
-      const tpl = document.getElementById(tplId);
-      if (!tpl || !('content' in tpl)) {
-        console.warn('projects.js: Template not found/unsupported:', tplId);
-        return;
-      }
+closeBtn?.addEventListener('click', closeModal);
+scrim?.addEventListener('click', closeModal);
+window.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') closeModal();
+});
 
-      // Save focus to restore on close
-      lastFocused = document.activeElement;
-
-      // Inject content
-      modalContent.innerHTML = '';
-      modalContent.appendChild(tpl.content.cloneNode(true));
-
-      // Show modal
-      modal.hidden = false;
-      lockScroll(true);
-      focusTrap(true);
-    };
-
-    const closeModal = () => {
-      modal.hidden = true;
-      modalContent.innerHTML = '';
-      lockScroll(false);
-      if (lastFocused && typeof lastFocused.focus === 'function') {
-        lastFocused.focus();
-      }
-    };
-
-    // Click on cards opens modal (event delegation)
-    document.addEventListener('click', (e) => {
-      const card = e.target.closest('.card[data-target]');
-      if (!card) return;
-
-      // only intercept primary click without modifiers
-      if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
-
-      e.preventDefault();
-      const tplId = card.dataset.target;
-      if (!tplId) return;
-
-      openModalFromTemplateId(tplId);
-      setHashForTpl(tplId);
-    });
-
-    // Close interactions
-    closeBtn?.addEventListener('click', () => { closeModal(); clearHash(); });
-    scrim?.addEventListener('click', (e) => {
-      // Close only when clicking the scrim background itself
-      if (e.target === scrim) { closeModal(); clearHash(); }
-    });
-    window.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && !modal.hidden) { closeModal(); clearHash(); }
-    });
-
-    // Back/forward navigation mirrors modal state
-    window.addEventListener('popstate', () => {
-      const tplId = getTplIdFromHash();
-      if (tplId) {
-        openModalFromTemplateId(tplId);
-      } else {
-        closeModal();
-      }
-    });
-
-    // Open from initial hash (deep link)
-    const initialTplId = getTplIdFromHash();
-    if (initialTplId) openModalFromTemplateId(initialTplId);
-  });
-})();
+// deep-link support: /projects/#p=slug
+window.addEventListener('DOMContentLoaded', () => {
+  const m = location.hash.match(/^#p=([\w\-]+)/);
+  if (m) openModalFromTemplateId(`tpl-${m[1]}`);
+});

@@ -364,7 +364,7 @@ main::after
 .project-modal__layout
 {
   display: grid;
-  grid-template-columns: 1.2fr 1fr;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); /* <- key change */
   gap: 1rem;
   align-items: start;
 }
