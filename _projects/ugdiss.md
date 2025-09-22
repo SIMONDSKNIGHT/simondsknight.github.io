@@ -7,9 +7,10 @@ stack: [Python, PyTorch, Data Analysis, Statistics]
 thumb: /assets/img/UOE.png  # card image (fill in)
 hero:  /assets/img/UOE.png    # big still (fallback) (fill in)
 gif:   /assets/gif/ugdiss.gif         # animated demo (optional) (fill in)
+png: true            # ← add this
+
 links:
   - {label: Dissertation PDF, url: "LINK_TO_UG_DISS_PDF"}
-  - {label: Repo, url: "LINK_TO_REPO_IF_ANY"}
 ---
 
 ## Abstract
@@ -40,4 +41,5 @@ different.
 
 - Represented the **largest dataset ever used to test Whisper** (by speaker number and variety) at the time of dissertation.  
 - Demonstrated systematic bias in Whisper’s performance based on speaker accent.  
-- Built reproducible pipelines for evaluation and analysis of ML projects.  
+- Built reproducible pipelines for evaluation and analysis of ML projects. 
+- While This project does represent a first foray into  

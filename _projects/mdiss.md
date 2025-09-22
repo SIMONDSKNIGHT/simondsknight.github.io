@@ -7,6 +7,7 @@ stack: [Python, PyTorch, Hugging Face, Whisper]
 thumb: /assets/img/UOE.png   # card image (fill in)
 hero:  /assets/img/UOE.png    # big still (fallback) (fill in)
 gif:   /assets/gif/mdiss.gif         # animated demo (optional) (fill in)
+png: true
 links:
   - { label: "Dissertation PDF", url: "{{ '/assets/pdfs/MINF.pdf' | relative_url }}" }
   - {label: Repo, url: "LINK_TO_REPO_IF_ANY"}

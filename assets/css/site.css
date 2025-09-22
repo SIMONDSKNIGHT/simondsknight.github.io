@@ -291,7 +291,10 @@ main::after
   object-fit: cover;
   box-shadow: 0 8px 24px rgba(0,0,0,.06);
 }
-
+.png
+{
+  background: #fff;          /* stays white in dark mode too */            /* small inset so the white shows */
+}
 /* project card body */
 .card__body
 {
@@ -348,39 +351,95 @@ main::after
   box-shadow: 0 20px 60px rgba(0,0,0,.25);
 }
 
+/* modal close button */
 .modal__close
 {
-  position: sticky;
-  top: 0;
-  float: right;
-  border: 0;
-  background: transparent;
-  font-size: 2rem;
-  line-height: 1;
+  position: absolute;
+  top: .75rem;
+  right: .75rem;
+  z-index: 2;
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: rgba(0,0,0,.06);
+  color: #222;
+  font-size: 20px;
+  line-height: 36px;
+  text-align: center;
   cursor: pointer;
+}
+
+.modal__close:hover
+{
+  background: rgba(0,0,0,.10);
+}
+
+/* dark theme close button */
+@media (prefers-color-scheme: dark)
+{
+  .modal__close
+  {
+    border-color: #333;
+    background: rgba(255,255,255,.14);
+    color: #fff;
+  }
+
+  .modal__close:hover
+  {
+    background: rgba(255,255,255,.22);
+  }
 }
 
 /* modal layout */
 .project-modal__layout
 {
-  display: grid;
-  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); /* <- key change */
+  /* default to one column so nothing goes blank */
+
   gap: 1rem;
   align-items: start;
 }
 
-.project-modal__media
+/* hide an empty media column if it renders */
+.project-modal__media:empty
 {
-  position: relative;
+  display: none;
 }
 
+/* upgrade to two columns only when media actually exists */
+@supports selector(:has(*))
+{
+  .project-modal__layout:has(.project-modal__media:not(:empty))
+  {
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+  }
+}
+
+.project-modal__header{
+    display:block;
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+}
+
+/* allow both columns to shrink; long urls/code won't blow up layout */
+.project-modal__media,
+.project-modal__details
+{
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+/* robust image sizing inside the modal */
 .project-media
 {
+  display: block;
   width: 100%;
   height: auto;
+  max-height: calc(90vh - 160px);
+  object-fit: contain;
   border-radius: 10px;
-  display: block;
 }
+
 
 /* about */
 .intro-line
@@ -435,6 +494,9 @@ main::after
   :root
   {
     --footer-h: 340px;
+  }
+  #about{
+    text-align:center;
   }
 
   .headshot

@@ -14,7 +14,7 @@ permalink: /projects/
     <a class="card" href="{{ p.url | relative_url }}" data-target="tpl-{{ p.slug | default: p.name }}">
       {% if p.thumb %}
         <div class="card__media">
-          <img class="card__img" src="{{ p.thumb | relative_url }}" alt="" loading="lazy">
+          <img class="card__img {% if p.png %} png{% endif %}" src="{{ p.thumb | relative_url }}" alt="" loading="lazy">
         </div>
       {% endif %}
       <div class="card__body">
