@@ -13,6 +13,17 @@ links:
 ---
 
 
-## Implementation
+## Overview  
+A lightweight personal portfolio built with **Jekyll**, **HTML/CSS**, and a little **vanilla JS**. Designed to be simple, fast, and more inviting than a GitHub profile.  
 
-## Notes
+## Highlights  
+- Clean, responsive layout with sticky header + fixed footer  
+- **Projects grid**: square cards that expand into modals with media + details  
+- **Dark mode** support via CSS variables  
+- Accessible: skip links, semantic markup, keyboard-friendly modals  
+
+## Stack  
+Jekyll · HTML · CSS · JS  
+
+## Links  
+[Repo](https://github.com/simondsknight.github.io) · [Live Site](https://simondsknight.github.io)  
