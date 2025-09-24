@@ -315,12 +315,16 @@ main::after
 }
 
 /* modal */
+/* modal */
 .modal
 {
   position: fixed;
   inset: 0;
   display: grid;
   z-index: 1000;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .18s ease;
 }
 
 .modal[hidden]
@@ -328,14 +332,29 @@ main::after
   display: none;
 }
 
+.modal.is-open
+{
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* scrim */
 .modal__scrim
 {
   position: absolute;
   inset: 0;
   background: rgba(0,0,0,.45);
   backdrop-filter: blur(2px);
+  opacity: 0;
+  transition: opacity .18s ease;
 }
 
+.modal.is-open .modal__scrim
+{
+  opacity: 1;
+}
+
+/* panel */
 .modal__panel
 {
   position: relative;
@@ -349,9 +368,19 @@ main::after
   border-radius: 12px;
   padding: 1rem 1rem 2rem;
   box-shadow: 0 20px 60px rgba(0,0,0,.25);
+
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity .18s ease, transform .18s ease;
 }
 
-/* modal close button */
+.modal.is-open .modal__panel
+{
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* close button */
 .modal__close
 {
   position: absolute;
@@ -394,10 +423,17 @@ main::after
 /* modal layout */
 .project-modal__layout
 {
-  /* default to one column so nothing goes blank */
-
+  display: grid;
+  grid-template-columns: 1fr;
   gap: 1rem;
   align-items: start;
+}
+
+.project-modal__header
+{
+  display: block;
+  margin-top: 0;
+  margin-bottom: 0.5rem;
 }
 
 /* hide an empty media column if it renders */
@@ -415,12 +451,6 @@ main::after
   }
 }
 
-.project-modal__header{
-    display:block;
-    margin-top: 0;
-    margin-bottom: 0.5rem;
-}
-
 /* allow both columns to shrink; long urls/code won't blow up layout */
 .project-modal__media,
 .project-modal__details
@@ -429,7 +459,7 @@ main::after
   overflow-wrap: anywhere;
 }
 
-/* robust image sizing inside the modal */
+/* modal image */
 .project-media
 {
   display: block;
