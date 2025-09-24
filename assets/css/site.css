@@ -313,8 +313,6 @@ main::after
   color: var(--muted);
   font-size: .95rem;
 }
-
-/* modal */
 /* modal */
 .modal
 {
@@ -324,7 +322,7 @@ main::after
   z-index: 1000;
   opacity: 0;
   pointer-events: none;
-  transition: opacity .18s ease;
+  transition: opacity .15s ease-in-out;
 }
 
 .modal[hidden]
@@ -345,13 +343,6 @@ main::after
   inset: 0;
   background: rgba(0,0,0,.45);
   backdrop-filter: blur(2px);
-  opacity: 0;
-  transition: opacity .18s ease;
-}
-
-.modal.is-open .modal__scrim
-{
-  opacity: 1;
 }
 
 /* panel */
@@ -368,16 +359,6 @@ main::after
   border-radius: 12px;
   padding: 1rem 1rem 2rem;
   box-shadow: 0 20px 60px rgba(0,0,0,.25);
-
-  opacity: 0;
-  transform: translateY(8px);
-  transition: opacity .18s ease, transform .18s ease;
-}
-
-.modal.is-open .modal__panel
-{
-  opacity: 1;
-  transform: translateY(0);
 }
 
 /* close button */
@@ -429,20 +410,6 @@ main::after
   align-items: start;
 }
 
-.project-modal__header
-{
-  display: block;
-  margin-top: 0;
-  margin-bottom: 0.5rem;
-}
-
-/* hide an empty media column if it renders */
-.project-modal__media:empty
-{
-  display: none;
-}
-
-/* upgrade to two columns only when media actually exists */
 @supports selector(:has(*))
 {
   .project-modal__layout:has(.project-modal__media:not(:empty))
@@ -451,15 +418,6 @@ main::after
   }
 }
 
-/* allow both columns to shrink; long urls/code won't blow up layout */
-.project-modal__media,
-.project-modal__details
-{
-  min-width: 0;
-  overflow-wrap: anywhere;
-}
-
-/* modal image */
 .project-media
 {
   display: block;
