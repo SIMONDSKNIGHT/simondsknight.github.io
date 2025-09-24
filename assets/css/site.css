@@ -313,36 +313,27 @@ main::after
   color: var(--muted);
   font-size: .95rem;
 }
-/* modal */
+
+/*modal*//* modal (no animations, no blur) */
 .modal
 {
   position: fixed;
   inset: 0;
-  display: grid;
+  display: none;            /* hidden by default */
   z-index: 1000;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity .15s ease-in-out;
-}
-
-.modal[hidden]
-{
-  display: none;
 }
 
 .modal.is-open
 {
-  opacity: 1;
-  pointer-events: auto;
+  display: grid;            /* show when open */
 }
 
-/* scrim */
+/* solid scrim (no backdrop-filter) */
 .modal__scrim
 {
   position: absolute;
   inset: 0;
   background: rgba(0,0,0,.45);
-  backdrop-filter: blur(2px);
 }
 
 /* panel */
@@ -358,10 +349,12 @@ main::after
   color: var(--fg);
   border-radius: 12px;
   padding: 1rem 1rem 2rem;
-  box-shadow: 0 20px 60px rgba(0,0,0,.25);
+
+  /* lighter shadow than before */
+  box-shadow: 0 10px 30px rgba(0,0,0,.18);
 }
 
-/* close button */
+/* close button (with dark mode) */
 .modal__close
 {
   position: absolute;
@@ -379,13 +372,10 @@ main::after
   text-align: center;
   cursor: pointer;
 }
-
 .modal__close:hover
 {
   background: rgba(0,0,0,.10);
 }
-
-/* dark theme close button */
 @media (prefers-color-scheme: dark)
 {
   .modal__close
@@ -394,30 +384,30 @@ main::after
     background: rgba(255,255,255,.14);
     color: #fff;
   }
-
   .modal__close:hover
   {
     background: rgba(255,255,255,.22);
   }
 }
 
-/* modal layout */
+/* modal layout: keep it simple and robust */
 .project-modal__layout
 {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: 1fr;                 /* always single column (safe) */
   gap: 1rem;
   align-items: start;
 }
 
-@supports selector(:has(*))
+/* let columns shrink if you later enable two-column again */
+.project-modal__media,
+.project-modal__details
 {
-  .project-modal__layout:has(.project-modal__media:not(:empty))
-  {
-    grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
-  }
+  min-width: 0;
+  overflow-wrap: anywhere;
 }
 
+/* image sizing */
 .project-media
 {
   display: block;
@@ -427,7 +417,6 @@ main::after
   object-fit: contain;
   border-radius: 10px;
 }
-
 
 /* about */
 .intro-line
