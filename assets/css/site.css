@@ -1,89 +1,90 @@
-/* ---- Design goals ----
-   - Simple: you don't have infinite time
-   - no complicated plugins
-   - Adapts to user’s dark-mode preference automatically.
-*/
+/* variables */
+:root
+{
+  --w: 860px;
+  --gap: 1rem;
+  --footer-h: 300px;
+  --scroll-cushion: 0px;
 
-:root {
-  --w: 860px;   
-  --gap: 1rem; 
+  --bg: #fff;
+  --fg: #111;
+  --muted: #666;
+  --surface: #fff;
+  --border: #eee;
 }
 
-* { box-sizing: border-box; }
+/* dark theme */
+@media (prefers-color-scheme: dark)
+{
+  :root
+  {
+    --bg: #0b0b0b;
+    --fg: #e7e7e7;
+    --muted: #aaa;
+    --surface: #111;
+    --border: #222;
+  }
+}
 
-html, body { height: 100%; margin: 0; }
+/* base */
+* 
+{
+  box-sizing: border-box;
+}
 
-body {
+html, body
+{
+  height: 100%;
+  margin: 0;
+}
+
+body
+{
   font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   line-height: 1.6;
-  color: #111;
-  background: #fff;
+  color: var(--fg);
+  background: var(--bg);
 
   display: grid;
   grid-template-rows: auto 1fr auto;
 }
 
-/* Keep links quiet by default; underline on hover for clear affordance */
-a { color: inherit; text-decoration: none; }
-a:hover { text-decoration: underline; }
-
-/* .wrap and .wrapper center content and apply max width + padding */
-.wrap, .wrapper {
+/* wrappers and utilities */
+.wrap, .wrapper
+{
   max-width: var(--w);
   margin: 0 auto;
   padding: 1rem;
 }
 
-/* Header: simple horizontal layout with a light divider line */
-header {
-    display: flex
-;
-    align-items: center;
-    border-bottom: 1px solid #eee;
-    text-align: center;
-    align-content: flex-start;
-    justify-content: center;
-
-}
-#site-header {
-  margin-top: 1rem;
-
-  /* ≥ 5rem breathing space above nav & below fine print */
-    padding-top: 2rem;
-  padding-bottom: 3rem;
-
-
-  
-  display: flex;
-  flex-direction: column;
-
-}
-.headnav {
-  display: grid;
-  grid-template-columns: repeat(4, 2fr);
-  justify-items: center;
-  align-items: center;
-  width: 50%;
-  max-width: var(--w);
+.center
+{
+  text-align: center;
 }
 
+a
+{
+  color: inherit;
+  text-decoration: none;
+}
 
+a:hover
+{
+  text-decoration: underline;
+}
 
-/* Brand area (site title + role) */
-.brand a { font-weight: 700; }
-.brand small { display: block; color: #666; }
+h1, h2, h3
+{
+  line-height: 1.25;
+}
 
-/* Top navigation links */
-header nav a { margin-left: 1rem; }
+.muted
+{
+  color: var(--muted);
+}
 
-/* Headings get a tighter line-height for nicer rhythm */
-h1, h2, h3 { line-height: 1.25; }
-
-/* Muted helper for secondary text (summaries, stacks) */
-.muted { color: #666; }
-
-/* Year "pill" floated right makes scanning easier without dominating */
-.pill {
+.pill
+{
   float: right;
   background: #f2f2f2;
   border-radius: 999px;
@@ -92,92 +93,399 @@ h1, h2, h3 { line-height: 1.25; }
   color: #555;
 }
 
-/* Project list = no bullets + subtle dividers */
-.list { list-style: none; padding: 0; margin: 1rem 0; }
-.list li { padding: .75rem 0; border-bottom: 1px solid #eee; }
+.skip
+{
+  position: absolute;
+  left: -9999px;
+}
 
-/* On project pages, stack the small metadata lines tightly */
-.project header p { margin: 0.25rem 0; }
-
-/* Accessibility: make the "skip to content" link visible when focused */
-.skip { position: absolute; left: -9999px; }
-.skip:focus {
-  left: 1rem; top: 1rem;
-  background: #000; color: #fff;
+.skip:focus
+{
+  left: 1rem;
+  top: 1rem;
+  background: #000;
+  color: #fff;
   padding: .5rem;
 }
 
-/* ---- FOOTER ---- */
-#site-footer {
-  border-top: 1px solid #eee;
-  margin-top: 2rem;
+/* header */
+header
+{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
 
-  /* ≥ 5rem breathing space above nav & below fine print */
-  padding-top: 5rem;
-  padding-bottom: 5rem;
+#site-header
+{
+  position: sticky;
+  top: 0;
+  z-index: 200;
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+  display: flex;
+  flex-direction: column;
+}
 
+/* top nav */
+.headnav
+{
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  justify-items: center;
+  align-items: center;
+  width: 50%;
+  max-width: var(--w);
+}
 
-  color: #666;
+header nav a
+{
+  margin-left: 1rem;
+}
+
+.brand a
+{
+  font-weight: 700;
+}
+
+.brand small
+{
+  display: block;
+  color: var(--muted);
+}
+
+/* footer (fixed) */
+#site-footer
+{
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 100;
+  width: 100%;
+  border-top: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--muted);
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+#site-footer .wrapper
+{
+  max-width: var(--w);
+  margin: 0 auto;
+  padding: 1rem;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-
-
-/* Social nav: 3 equal slots, centered regardless of link length */
-#site-footer .footnav {
+#site-footer .footnav
+{
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   justify-items: center;
   align-items: center;
   width: 100%;
-  max-width: var(--w);
 }
 
-#site-footer .footnav a {
-  margin: 0 !important;  /* override global nav spacing */
+#site-footer .footnav a
+{
+  margin: 0;
   text-decoration: none;
   color: inherit;
 }
 
-/* Fine print: tucked at bottom, tight spacing */
-#site-footer .lowerfooter {
-  margin-top: 2rem;   /* gap between nav and fine print */
+#site-footer .lowerfooter
+{
+  margin-top: 2rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 0.25rem;
   line-height: 1.2;
   font-size: 0.8rem;
-  color: #999;
+  color: var(--muted);
   text-align: center;
 }
-#site-footer .lowerfooter small { display: block; margin: 0; }
 
-/* ---- DARK MODE ---- */
-@media (prefers-color-scheme: dark) {
-  body { background: #0b0b0b; color: #e7e7e7; }
-  header, #site-footer { border-color: #222; }
-  .muted { color: #aaa; }
-  .pill { background: #1b1b1b; color: #bbb; }
+#site-footer .lowerfooter small
+{
+  display: block;
+  margin: 0;
 }
 
-.emoji {
+/* scroll spacer */
+main::after
+{
+  content: "";
+  display: block;
+  height: calc(var(--footer-h) + var(--scroll-cushion, 0px));
+}
+
+/* projects grid */
+.grid
+{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem;
+  list-style: none;
+  padding: 0;
+  margin: 1.5rem 0;
+}
+
+.grid > li
+{
+  margin: 0;
+}
+
+/* project card */
+.card
+{
+  display: grid;
+  grid-template-rows: 1fr auto;
+  aspect-ratio: 1 / 1;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease;
+}
+
+.card:hover
+{
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0,0,0,.06);
+}
+
+.card *
+{
+  line-height: 1.35;
+}
+
+/* project card media */
+.card__media
+{
+  position: relative;
+  overflow: hidden;
+}
+
+.card__media::before
+{
+  content: "";
+  display: block;
+  padding-top: 62%;
+}
+
+.card__img
+{
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  box-shadow: 0 8px 24px rgba(0,0,0,.06);
+}
+.png
+{
+  background: #fff;          /* stays white in dark mode too */            /* small inset so the white shows */
+}
+/* project card body */
+.card__body
+{
+  padding: .75rem .9rem 1rem;
+}
+
+.card h3
+{
+  margin: 0 0 .35rem;
+  font-size: 1rem;
+}
+
+.card p
+{
+  margin: 0;
+  color: var(--muted);
+  font-size: .95rem;
+}
+
+/*modal*//* modal (no animations, no blur) */
+.modal
+{
+  position: fixed;
+  inset: 0;
+  display: none;            /* hidden by default */
+  z-index: 1000;
+}
+
+.modal.is-open
+{
+  display: grid;            /* show when open */
+}
+
+/* solid scrim (no backdrop-filter) */
+.modal__scrim
+{
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,.45);
+}
+
+/* panel */
+.modal__panel
+{
+  position: relative;
+  z-index: 1;
+  margin: 3vh auto;
+  width: min(1100px, 96vw);
+  max-height: 94vh;
+  overflow: auto;
+  background: var(--surface);
+  color: var(--fg);
+  border-radius: 12px;
+  padding: 1rem 1rem 2rem;
+
+  /* lighter shadow than before */
+  box-shadow: 0 10px 30px rgba(0,0,0,.18);
+}
+
+/* close button (with dark mode) */
+.modal__close
+{
+  position: absolute;
+  top: .75rem;
+  right: .75rem;
+  z-index: 2;
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: rgba(0,0,0,.06);
+  color: #222;
+  font-size: 20px;
+  line-height: 36px;
+  text-align: center;
+  cursor: pointer;
+}
+.modal__close:hover
+{
+  background: rgba(0,0,0,.10);
+}
+@media (prefers-color-scheme: dark)
+{
+  .modal__close
+  {
+    border-color: #333;
+    background: rgba(255,255,255,.14);
+    color: #fff;
+  }
+  .modal__close:hover
+  {
+    background: rgba(255,255,255,.22);
+  }
+}
+
+/* modal layout: keep it simple and robust */
+.project-modal__layout
+{
+  display: grid;
+  grid-template-columns: 1fr;                 /* always single column (safe) */
+  gap: 1rem;
+  align-items: start;
+}
+
+/* let columns shrink if you later enable two-column again */
+.project-modal__media,
+.project-modal__details
+{
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+/* image sizing */
+.project-media
+{
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: calc(90vh - 160px);
+  object-fit: contain;
+  border-radius: 10px;
+}
+
+/* about */
+.intro-line
+{
+  font-size: 2rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  text-align: left;
+}
+
+.emoji
+{
   height: 1em;
   width: 1em;
   font-size: 3rem;
   margin: 0 .05em 0 .1em;
   vertical-align: -0.1em;
-  /* For safety - prevent weird effects in some browsers */
   display: inline-block;
-  /* Fixes issue where emojis were slightly off center vertically in Firefox */
   position: relative;
   top: -0.05em;
 }
-.intro-line{
-  font-size: 2rem;
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-  text-align: left;
+
+.headshot
+{
+  float: right;
+  width: min(260px, 35vw);
+  height: auto;
+  border-radius: 50%;
+  margin: 0 0 1rem 1rem;
+  object-fit: cover;
+}
+
+/* media queries */
+@media (max-width: 800px)
+{
+  .project-modal__layout
+  {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 720px)
+{
+  .grid
+  {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px)
+{
+  :root
+  {
+    --footer-h: 340px;
+  }
+  #about{
+    text-align:center;
+  }
+
+  .headshot
+  {
+    float: none;
+    display: block;
+    margin: 0 auto 1rem auto;
+    width: min(60vw, 320px);
+  }
+
+  .headnav
+  {
+    width: 90%;
+  }
 }

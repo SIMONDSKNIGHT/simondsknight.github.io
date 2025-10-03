@@ -13,9 +13,21 @@ baseurl: ""
 collections:
   projects:
     output: true
+    permalink: /projects/:name/
 #default front matter for all pages unless overridden
 defaults:
   -
     scope: {path: ""}
     values: {layout: "default"}
+  - scope: { path: "", type: "projects" }
+    values:
+      layout: project
+site:
+  thumb_bg: "#111111"
+
+
+
+
+
+
 
