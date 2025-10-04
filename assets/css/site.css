@@ -413,6 +413,11 @@ main::after
   gap: 1rem;
   align-items: start;
 }
+.project-modal__header{
+    display:block;
+    text-align:center;
+    align-items: center;
+}
 
 /* let columns shrink if you later enable two-column again */
 .project-modal__media,
