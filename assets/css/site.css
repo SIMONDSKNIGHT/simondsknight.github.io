@@ -313,32 +313,43 @@ main::after
   color: var(--muted);
   font-size: .95rem;
 }
-
-/*modal*//* modal (no animations, no blur) */
-.modal
-{
+/* modal: animate opacity/visibility instead of toggling display */
+.modal {
   position: fixed;
   inset: 0;
-  display: none;            /* hidden by default */
   z-index: 1000;
+
+  /* keep in flow so it can animate */
+  display: grid;
+
+  /* hidden base state */
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+
+  /* fade timing */
+  transition: opacity 200ms ease, visibility 0s linear 200ms;
 }
 
-.modal.is-open
-{
-  display: grid;            /* show when open */
+/* visible state */
+.modal.is-open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+
+  /* show instantly, fade handled by opacity */
+  transition: opacity 200ms ease, visibility 0s;
 }
 
-/* solid scrim (no backdrop-filter) */
-.modal__scrim
-{
+/* solid scrim */
+.modal__scrim {
   position: absolute;
   inset: 0;
   background: rgba(0,0,0,.45);
 }
 
-/* panel */
-.modal__panel
-{
+/* panel slide+fade */
+.modal__panel {
   position: relative;
   z-index: 1;
   margin: 3vh auto;
@@ -349,14 +360,23 @@ main::after
   color: var(--fg);
   border-radius: 12px;
   padding: 1rem 1rem 2rem;
-
-  /* lighter shadow than before */
   box-shadow: 0 10px 30px rgba(0,0,0,.18);
+
+  /* animation */
+  transform: translateY(8px);
+  opacity: 0;
+  transition: transform 220ms ease, opacity 220ms ease;
+  will-change: transform, opacity;
 }
 
-/* close button (with dark mode) */
-.modal__close
-{
+/* when open, slide up + fade in */
+.modal.is-open .modal__panel {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* close button (kept as-is) */
+.modal__close {
   position: absolute;
   top: .75rem;
   right: .75rem;
@@ -372,21 +392,16 @@ main::after
   text-align: center;
   cursor: pointer;
 }
-.modal__close:hover
-{
-  background: rgba(0,0,0,.10);
+.modal__close:hover { background: rgba(0,0,0,.10); }
+@media (prefers-color-scheme: dark) {
+  .modal__close { border-color: #333; background: rgba(255,255,255,.14); color: #fff; }
+  .modal__close:hover { background: rgba(255,255,255,.22); }
 }
-@media (prefers-color-scheme: dark)
-{
-  .modal__close
-  {
-    border-color: #333;
-    background: rgba(255,255,255,.14);
-    color: #fff;
-  }
-  .modal__close:hover
-  {
-    background: rgba(255,255,255,.22);
+
+/* accessibility: respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .modal, .modal__panel {
+    transition: none !important;
   }
 }
 
@@ -489,3 +504,4 @@ main::after
     width: 90%;
   }
 }
+.modal[hidden] { display: none; }
