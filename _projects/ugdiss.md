@@ -6,11 +6,11 @@ year: 2024
 stack: [Python, PyTorch, Data Analysis, Statistics]
 thumb: /assets/img/UOE.png  # card image (fill in)
 hero:  /assets/img/UOE.png    # big still (fallback) (fill in)
-gif:   /assets/gif/ugdiss.gif         # animated demo (optional) (fill in)
+#gif:   /assets/gif/ugdiss.gif         # animated demo (optional) (fill in)
 png: true            # ← add this
-
 links:
-  - {label: Dissertation PDF, url: "LINK_TO_UG_DISS_PDF"}
+  - label: "Dissertation PDF"
+    url: "/assets/pdfs/MINF.pdf" 
 ---
 
 ## Abstract

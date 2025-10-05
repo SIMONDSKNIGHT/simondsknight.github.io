@@ -4,13 +4,14 @@ title: Masters Dissertation — Data Poisoning Attacks on Whisper
 summary: Explored the feasibility of data poisoning attacks on large language models, focusing on inducing hallucinations in Whisper.
 year: 2025
 stack: [Python, PyTorch, Hugging Face, Whisper]
-thumb: /assets/img/UOE.png   # card image (fill in)
-hero:  /assets/img/UOE.png    # big still (fallback) (fill in)
-gif:   /assets/gif/mdiss.gif         # animated demo (optional) (fill in)
+thumb: /assets/img/UOE.png  
+hero:  /assets/img/UOE.png    
+gif:   /assets/gif/mdiss.gif        
 png: true
 links:
-  - { label: "Dissertation PDF", url: "{{ '/assets/pdfs/MINF.pdf' | relative_url }}" }
-  - {label: Repo, url: "LINK_TO_REPO_IF_ANY"}
+  - label: "Dissertation PDF"
+    url: "/assets/pdfs/MINF.pdf"  
+
 ---
 
 

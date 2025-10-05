@@ -1,12 +1,12 @@
 ---
 layout: project
-title: Data→Video Encoder — Secure File-in-Video POC
-summary: Encrypts any file, encodes ciphertext into video frames, muxes with FFmpeg to MP4/MOV/MKV, and fully reverses the process; Electron/React UI + FastAPI/Python backend.
+title: VideoCloud Concept
+summary: Encrypts any file, encodes ciphertext into video frames, muxes with FFmpeg to MP4/MOV/MKV, and fully reverses the process; Electron/React UI + FastAPI/Python backend, further expansion to 
 year: 2025
 stack: [Electron, React, FastAPI, Python, FFmpeg, AES-GCM/ChaCha20-Poly1305, Argon2id, MP4/MOV/MKV, H.264/HEVC/VP9/AV1]
 thumb: /assets/img/datavideo-thumb.jpg   # fill in
 hero:  /assets/img/datavideo-hero.jpg    # fill in
-gif:   /assets/gif/datavideo.gif         # optional
+#gif:   /assets/gif/datavideo.gif         # optional
 png: true
 links:
   - { label: "Repo", url: "https://github.com/yourname/data-video-encoder" }  # replace

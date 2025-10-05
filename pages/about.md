@@ -3,26 +3,40 @@ title: About
 layout: default
 permalink: /about/
 body_class: about-page
-
 ---
 
 # About
 
-<!-- Right-aligned headshot; the CSS below handles sizing/float -->
+<!-- Right-aligned headshot; the CSS handles sizing/float -->
 <img src="{{ '/assets/img/headshot.jpg' | relative_url }}" alt="Photo of Simon Knight" class="headshot" loading="lazy">
 
-Hi, I’m **Simon Knight**! I'm a fresh Computer Science graduate currently based in London, UK, who loves designing and building systems, nifty web doo-dads, and dabbling in ML Experiments. I like iterative development and sharing my ideas through my creations!
+Hi, I’m **Simon Knight**—a Masters in Computer Science (MInf) graduate based in London. I like designing and building practical systems, crisp web UIs, and the occasional ML experiment. I work iteratively and favour a design-heavy, deployment-light approach: clarify requirements up front, then ship smoothly.
 
-**Education.** MSc (Informatics/Computer Science), University of Edinburgh (2:1 overall; 80% dissertation). Coursework emphasized system design, data science, databases, ML, and software engineering. 
+[Download CV (.docx)]({{ '/assets/docs/SimonKnight-CV.docx' | relative_url }}){: .pill }
 
-**Recent work.** Research/engineering intern at **Vido Research** (Japan): Primarily was put to work prototyping potential financial research software. built scrapers + EdiNET API ingestion for company executive data, automated parsing/updates, and laid groundwork for distribution pipelines on GCP.
+---
 
-**Skills.** Most strong 💪 with Python, but equally comfortable with Java. Experience with JS, both in conjunction with HTML and CSS for some web dev, but also for creating Frontends with React. Confident with SQL(PostGreSQL, MySQL) and with terminal languages. My secret favorite language is Haskell!
+## Education
+**MInf / MSc in Informatics (Computer Science)** — *University of Edinburgh*  
+2:1 with Honours. Achieved **80%** on master’s dissertation.  
+Focus: databases, cloudprogramming, software engineering, data/ML, and systems design.
 
+## Experience
+**Vido Research** — *Development Intern (Summer 2024, Japan)*  
+Built data-acquisition and workflow tooling for investor research. Prototyped scrapers and EDINET **API** ingestion for Japanese filings to maintain an up-to-date exec/board database; automated reporting; laid groundwork for client distribution on **GCP**.
 
-**Languages.** Native English; fluent Japanese (JLPT N1)—comfortable in business contexts. 
+## Skills
+**Languages:** Python, Java, Haskell, SQL, JavaScript (HTML/CSS)  
+**Selected Tech/Frameworks:** Hugging Face, PyTorch, FastAPI, React, Electron, Git, PostgreSQL  
+**Strengths:** streaming/system design, clean APIs, testable code, data pipelines
 
-**Selected projects.**
-- **There WAS a cool list of projects here, but they've been migrated to the *<a href="{{ '/projects/' | relative_url }}">Projects Page</a>***.
+## Languages
+English (native) • Japanese (**JLPT N1**/fluent)
 
-**Contact.** <a href="mailto:knigsd@icloud.com?subject=Portfolio%20Inquiry&body=Hi,%20Simon.%0D%0APromising%20Portfolio!%20Email%20me%20when%20its%20done!%0D%0ARegards">Email me</a> · <a href="https://github.com/simondsknight" target="_blank" rel="noopener">GitHub</a> · <a href="https://www.linkedin.com/in/simon-knight-a37643230" target="_blank" rel="noopener">LinkedIn</a>
+## Selected Projects
+- **Data→Video Encoder (POC):** secure file-in-video pipeline using AEAD, frame encoding, and **FFmpeg** muxing; fully reversible. Desktop UI (**Electron/React**), orchestration in **FastAPI/Python**.  
+- **Stock Prediction with LSTM:** end-to-end pipeline (cleaning, scaling, windowing, training, baselines) in Python/**TensorFlow**.  
+- More on the *<a href="{{ '/projects/' | relative_url }}">Projects page</a>*.
+
+## Contact
+<a href="mailto:knigsd@icloud.com">Email</a> · <a href="https://github.com/simondsknight" target="_blank" rel="noopener">GitHub</a> · <a href="https://www.linkedin.com/in/simon-knight-a37643230" target="_blank" rel="noopener">LinkedIn</a>
