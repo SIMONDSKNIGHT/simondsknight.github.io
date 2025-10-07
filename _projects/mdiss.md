@@ -6,7 +6,7 @@ year: 2025
 stack: [Python, PyTorch, Hugging Face, Whisper, Google Colab]
 thumb: /assets/img/UOE.png  
 hero:  /assets/img/UOE.png    
-gif:   /assets/gif/mdiss.gif        
+#gif:   /assets/gif/mdiss.gif        
 png: true
 links:
   - label: "Dissertation PDF"
