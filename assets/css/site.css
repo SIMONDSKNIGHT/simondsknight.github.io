@@ -508,5 +508,14 @@ main::after
   {
     width: 90%;
   }
+  #site-footer {
+    padding-top:0;
+    padding-bottom:0;
+  }
+  #site-footer .lowerfooter {
+    margin-top: 1rem;
+
+}
+
 }
 .modal[hidden] { display: none; }

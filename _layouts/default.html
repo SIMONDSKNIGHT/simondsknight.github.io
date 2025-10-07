@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{ page.title }} · {{ site.title }}</title>
 
-    <!-- The ONE place we link CSS so all pages get it -->
     <link rel="stylesheet" href="{{ '/assets/css/site.css' | relative_url }}?v={{ site.time | date: '%s' }}">
 
     <meta name="description" content="{{ page.excerpt | default: site.description | strip_html | strip }}">

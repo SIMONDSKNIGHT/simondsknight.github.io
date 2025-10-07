@@ -3,7 +3,7 @@ layout: project
 title: Masters Dissertation — Data Poisoning Attacks on Whisper
 summary: Explored the feasibility of data poisoning attacks on large language models, focusing on inducing hallucinations in Whisper.
 year: 2025
-stack: [Python, PyTorch, Hugging Face, Whisper]
+stack: [Python, PyTorch, Hugging Face, Whisper, Google Colab]
 thumb: /assets/img/UOE.png  
 hero:  /assets/img/UOE.png    
 gif:   /assets/gif/mdiss.gif        
@@ -33,7 +33,6 @@ that while practical Hallucination inducing data poisoning attacks on ASR system
 remain challenging, they are theoretically plausible and warrant further investigation.
 This dissertation contributes experimental methods, technical observations, and new
 questions to the growing field of ASR robustness and safety.
-i
 
 ## Implementation
 
@@ -46,4 +45,5 @@ i
 
 - Achieved **80% grade** for the project.  
 - Demonstrated feasibility of targeted hallucination induction via poisoned training data.  
+- Detailed Post-mortem analysis of technical and structure of tests and models, with keen analysis of points of improvement for future work.
 - Extended understanding of data poisoning threats to very large language models.  
